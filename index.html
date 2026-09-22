@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de productos | Versión 2</title>
-    <link rel="stylesheet" href="lib/style.css">
-    <script src="lib/script.js" defer></script>
+    <title>Tienda de productos | Proyecto integrador</title>
+ 
+    <!-- Hoja de estilos externa -->
+    <link rel="stylesheet" href="style.css">
+ 
+    <script src="script.js" defer></script>
 </head>
+ 
 <body>
  
+    <!-- ==================================================================
+         CABECERA
+         ================================================================== -->
     <header class="cabecera">
         <div class="zona-marca">
             <span class="logo">
@@ -16,7 +23,7 @@
             </span>
             <div>
                 <h1>Frutería Web</h1>
-                <p class="subtitulo">Versión 2: carrito con cantidades</p>
+                <p class="subtitulo">Proyecto integrador: CSS moderno + JavaScript</p>
             </div>
         </div>
  
@@ -24,14 +31,39 @@
             <p class="contador-cabecera">
                 Artículos en el carrito: <span id="contador-carrito">0</span>
             </p>
+            <button id="btn-tema" class="boton boton-secundario">Modo oscuro</button>
         </div>
     </header>
  
+    <!-- Aviso de conexión: JavaScript lo muestra con los eventos online/offline -->
+    <p id="aviso-conexion" class="aviso-conexion oculto">
+        Sin conexión a internet. Puedes seguir navegando, pero no podrás confirmar el pedido.
+    </p>
+ 
+    <!-- ==================================================================
+         CONTENIDO PRINCIPAL: catálogo (izquierda) + carrito (derecha)
+         ================================================================== -->
     <main class="contenedor-principal">
  
         <!-- ---------- COLUMNA IZQUIERDA: CATÁLOGO ---------- -->
         <section class="columna-catalogo">
-            <h2>Catálogo</h2>
+ 
+            <div class="barra-filtros">
+                <h2>Catálogo</h2>
+ 
+                <div class="grupo-filtro">
+                    <label for="filtro-categoria">Filtrar por categoría</label>
+                    <select id="filtro-categoria">
+                        <option value="todos">Todas las categorías</option>
+                        <option value="fruta">Frutas</option>
+                        <option value="verdura">Verduras</option>
+                        <option value="bebida">Bebidas</option>
+                    </select>
+                </div>
+            </div>
+ 
+            <!-- Este contenedor llega VACÍO desde el HTML.
+                 JavaScript crea y agrega aquí cada tarjeta de producto. -->
             <div id="lista-productos" class="grid-productos"></div>
         </section>
  
@@ -39,31 +71,63 @@
         <aside class="panel-carrito">
             <h2>Tu carrito</h2>
  
-            <!-- Las líneas del carrito las genera JavaScript -->
+            <!-- Las líneas del carrito también se generan desde JavaScript -->
             <div id="items-carrito" class="lista-carrito"></div>
  
+            <!-- Zona de cupones -->
+            <div class="zona-descuento">
+                <label for="input-descuento">¿Tienes un cupón?</label>
+                <div class="fila-descuento">
+                    <input type="text" id="input-descuento" placeholder="Ej: DESCUENTO10">
+                    <button id="btn-aplicar-descuento" class="boton">Aplicar</button>
+                </div>
+                <p class="ayuda">Prueba con DESCUENTO10, MITAD o ENVIOGRATIS.</p>
+            </div>
+ 
+            <!-- Resumen de la compra -->
             <div class="resumen">
                 <p class="linea-resumen">
                     <span>Subtotal</span>
-                    <span id="texto-subtotal">$0.00</span>
+                    <span id="texto-subtotal">$0</span>
+                </p>
+                <p class="linea-resumen oculto" id="linea-descuento">
+                    <span>Descuento</span>
+                    <span id="texto-descuento">$0</span>
                 </p>
                 <p class="linea-resumen">
                     <span>Envío</span>
-                    <span id="texto-envio">$0.00</span>
+                    <span id="texto-envio">$0</span>
                 </p>
                 <p class="linea-resumen linea-total">
                     <span>Total a pagar</span>
-                    <span id="texto-total">$0.00</span>
+                    <span id="texto-total">$0</span>
                 </p>
             </div>
  
+            <!-- Formulario de compra: al enviarlo evitamos la recarga con preventDefault() -->
+            <form id="form-compra" class="form-compra">
+                <h3>Finalizar compra</h3>
+                <label for="input-nombre" style="font-size: 15px; display: block; margin: 5px;">Nombre completo:
+                    <input type="text" id="input-nombre" placeholder="Nombre completo" required>
+                </label>
+ 
+                <label for="input-correo" style="font-size: 15px; display: block; margin: 5px;">Correo electrónico:
+                    <input type="email" id="input-correo" placeholder="correo@ejemplo.com" required>
+                </label>
+                <button type="submit" class="boton boton-bloque">Confirmar pedido</button>
+            </form>
+ 
+            <!-- Mensajes del sistema (éxito / error / información) -->
             <p id="mensaje-sistema" class="mensaje oculto"></p>
+ 
+            <!-- Comprobante del pedido: se llena desde JavaScript -->
+            <div id="panel-boleta" class="boleta oculto"></div>
         </aside>
  
     </main>
  
     <footer class="pie">
-        <p>Ejemplo académico. Todo el comportamiento está en <code>lib/script.js</code>.</p>
+        <p>Ejemplo académico para el Laboratorio de Ingeniería de Software 3</p>
     </footer>
  
 </body>

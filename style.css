@@ -336,3 +336,24 @@ p { margin: 0; }
 }
 
 
+.tema-oscuro {
+    --color-primario: #4ade80;
+    --color-texto-boton: #052e16; /* sobre verde claro el texto debe ser oscuro */
+    --color-cabecera: #0b2f1f;
+    --color-texto: #e5e7eb;
+    --color-texto-suave: #9ca3af;
+    --color-fondo: #0f172a;
+    --color-superficie: #1e293b;
+    --color-borde: #334155;
+ 
+    --color-exito: #4ade80;
+    --fondo-exito: #14532d;
+    --color-error: #fca5a5;
+    --fondo-error: #4c1d1d;
+    --color-info: #93c5fd;
+    --fondo-info: #1e3a8a;
+ 
+    --sombra: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+ 
+
