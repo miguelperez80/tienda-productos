@@ -164,7 +164,7 @@ function renderizarProductos() {
             `
                 <span class="icono-producto"><img src="${producto.icono}" alt="${producto.nombre}" style="width: 100%; height: auto;"></span>
                 <h3 class="nombre-producto">${producto.nombre}</h3>
-                <p class="etiqueta-categoria">${producto.categoria}</p>
+                                <p class="etiqueta-categoria etiqueta-${producto.categoria}">${producto.categoria}</p>
                 <p class="precio-producto">${formatearPrecio(producto.precio)}</p>
                 <p class="estado-stock">${textoStock}</p>
                 <p class="mini-dato">${textoEnCarrito}</p>
@@ -237,6 +237,18 @@ const agregarAlCarrito = (idProducto) => {
         producto.stock--;
         mostrarMensaje(`${producto.nombre} agregado al carrito`, "exito");
         actualizarPantalla();
+
+        // Animación: destello en la tarjeta y rebote en el contador
+        const tarjetas = document.querySelectorAll(".tarjeta");
+        tarjetas.forEach((tarjeta) => {
+            if (tarjeta.querySelector(".nombre-producto").textContent === producto.nombre) {
+                tarjeta.classList.add("agregado");
+                setTimeout(() => tarjeta.classList.remove("agregado"), 500);
+            }
+        });
+
+        contadorCarrito.classList.add("rebotando");
+        setTimeout(() => contadorCarrito.classList.remove("rebotando"), 350);
     } else {
         mostrarMensaje(`No queda inventario de ${producto.nombre}`, "error");
     }

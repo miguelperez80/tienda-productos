@@ -1,23 +1,23 @@
 
 :root {
-    --color-primario: #15803d;
+    --color-primario: #252220;
     --color-texto-boton: #ffffff;
-    --color-cabecera: #166534;
+    --color-cabecera: #57e038;
     --color-texto: #1f2937;
     --color-texto-suave: #6b7280;
-    --color-fondo: #f3f5f2;
+    --color-fondo: #fff7ed;
     --color-superficie: #ffffff;
-    --color-borde: #e2e6e0;
- 
-    --color-exito: #15803d;
+    --color-borde: #fed7aa;
+
+    --color-exito: #16a34a;
     --fondo-exito: #dcfce7;
     --color-error: #b91c1c;
     --fondo-error: #fee2e2;
- 
-    /* Escala de espaciado: todo el diseño se calcula a partir de este número */
+
     --espaciado-base: 16px;
-    --radio: 12px;
+    --radio: 16px;
     --sombra: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --sombra-hover: 0 12px 24px rgba(234, 88, 12, 0.25);
 }
  
  
@@ -94,8 +94,6 @@ p { margin: 0; }
 }
  
 .tarjeta {
-    /* crecer / encoger / ancho base: con este ancho base caben 4 tarjetas
-       por fila en pantallas grandes y menos en pantallas pequeñas */
     flex: 1 1 160px;
     background-color: var(--color-superficie);
     border: 1px solid var(--color-borde);
@@ -103,10 +101,27 @@ p { margin: 0; }
     box-shadow: var(--sombra);
     padding: var(--espaciado-base);
     text-align: center;
- 
+
     display: flex;
     flex-direction: column;
     gap: calc(var(--espaciado-base) * 0.35);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.tarjeta:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: var(--sombra-hover);
+}
+
+.tarjeta img {
+    transition: transform 0.25s ease;
+    border-radius: calc(var(--radio) / 2);
+}
+
+.tarjeta:hover img {
+    transform: scale(1.08);
 }
  
 /* ÁMBITO LOCAL EN ACCIÓN: al agotarse el producto, JavaScript agrega la clase
@@ -395,6 +410,46 @@ p { margin: 0; }
     color: var(--color-texto-suave);
     cursor: pointer;
     line-height: 1;
+}
+/* Colores distintos por categoría */
+.etiqueta-fruta {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.etiqueta-verdura {
+    background-color: #dcfce7;
+    color: #15803d;
+    border-color: #bbf7d0;
+}
+
+.etiqueta-bebida {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+}
+
+/* Animación cuando se agrega un producto al carrito */
+@keyframes destello {
+    0%   { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
+    100% { box-shadow: 0 0 0 18px rgba(22, 163, 74, 0); }
+}
+
+.tarjeta.agregado {
+    animation: destello 0.5s ease-out;
+}
+
+/* Animación del contador del carrito */
+@keyframes rebote {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+#contador-carrito.rebotando {
+    display: inline-block;
+    animation: rebote 0.35s ease;
 }
  
 
