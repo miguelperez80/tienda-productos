@@ -183,10 +183,32 @@ function renderizarProductos() {
                 });
             }
 
+            const botonDetalles = document.createElement("button");
+            botonDetalles.classList.add("boton", "boton-secundario", "boton-bloque");
+            botonDetalles.textContent = "Ver detalles";
+            botonDetalles.addEventListener("click", () => {
+                mostrarDetalles(producto.id);
+            });
+
             tarjeta.appendChild(botonComprar);
+            tarjeta.appendChild(botonDetalles);
             contenedorProductos.appendChild(tarjeta);
         }
     });
+}
+
+function mostrarDetalles(idProducto) {
+    const producto = buscarProductoPorId(idProducto);
+    const contenidoModal = document.getElementById("contenido-modal");
+
+    contenidoModal.innerHTML = `
+        <h3>${producto.nombre}</h3>
+        <p class="etiqueta-categoria">${producto.categoria}</p>
+        <p class="precio-producto">${formatearPrecio(producto.precio)}</p>
+        <p class="estado-stock">Stock disponible: ${producto.stock}</p>
+    `;
+
+    document.getElementById("modal-detalle").classList.remove("oculto");
 }
 
 
@@ -569,4 +591,13 @@ function mostrarMensaje(texto, tipo) {
     });
 
     console.log(`Tienda lista con ${inventarioProductos.length} productos.`);
+        document.getElementById("cerrar-modal").addEventListener("click", () => {
+        document.getElementById("modal-detalle").classList.add("oculto");
+    });
+
+    document.getElementById("modal-detalle").addEventListener("click", (evento) => {
+        if (evento.target.id === "modal-detalle") {
+            document.getElementById("modal-detalle").classList.add("oculto");
+        }
+    });
 })();
