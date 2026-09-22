@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de productos | Versión 1</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <title>Tienda de productos | Versión 2</title>
+    <link rel="stylesheet" href="lib/style.css">
+    <script src="lib/script.js" defer></script>
 </head>
 <body>
  
@@ -16,20 +16,50 @@
             </span>
             <div>
                 <h1>Frutería Web</h1>
-                <p class="subtitulo">Versión 1: catálogo dinámico</p>
+                <p class="subtitulo">Versión 2: carrito con cantidades</p>
             </div>
+        </div>
+ 
+        <div class="zona-acciones">
+            <p class="contador-cabecera">
+                Artículos en el carrito: <span id="contador-carrito">0</span>
+            </p>
         </div>
     </header>
  
     <main class="contenedor-principal">
+ 
+        <!-- ---------- COLUMNA IZQUIERDA: CATÁLOGO ---------- -->
         <section class="columna-catalogo">
             <h2>Catálogo</h2>
- 
-            <!-- Este contenedor llega VACÍO: JavaScript crea aquí las tarjetas -->
             <div id="lista-productos" class="grid-productos"></div>
+        </section>
+ 
+        <!-- ---------- COLUMNA DERECHA: CARRITO ---------- -->
+        <aside class="panel-carrito">
+            <h2>Tu carrito</h2>
+ 
+            <!-- Las líneas del carrito las genera JavaScript -->
+            <div id="items-carrito" class="lista-carrito"></div>
+ 
+            <div class="resumen">
+                <p class="linea-resumen">
+                    <span>Subtotal</span>
+                    <span id="texto-subtotal">$0.00</span>
+                </p>
+                <p class="linea-resumen">
+                    <span>Envío</span>
+                    <span id="texto-envio">$0.00</span>
+                </p>
+                <p class="linea-resumen linea-total">
+                    <span>Total a pagar</span>
+                    <span id="texto-total">$0.00</span>
+                </p>
+            </div>
  
             <p id="mensaje-sistema" class="mensaje oculto"></p>
-        </section>
+        </aside>
+ 
     </main>
  
     <footer class="pie">
