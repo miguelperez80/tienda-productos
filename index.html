@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de productos | Versión 1</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+ 
+    <header class="cabecera">
+        <div class="zona-marca">
+            <span class="logo">
+                <img src="images/carrito.png" alt="Logo de la frutería" width="50" height="50">
+            </span>
+            <div>
+                <h1>Frutería Web</h1>
+                <p class="subtitulo">Versión 1: catálogo dinámico</p>
+            </div>
+        </div>
+    </header>
+ 
+    <main class="contenedor-principal">
+        <section class="columna-catalogo">
+            <h2>Catálogo</h2>
+ 
+            <!-- Este contenedor llega VACÍO: JavaScript crea aquí las tarjetas -->
+            <div id="lista-productos" class="grid-productos"></div>
+ 
+            <p id="mensaje-sistema" class="mensaje oculto"></p>
+        </section>
+    </main>
+ 
+    <footer class="pie">
+        <p>Ejemplo académico. Todo el comportamiento está en <code>lib/script.js</code>.</p>
+    </footer>
+ 
+</body>
+</html>
