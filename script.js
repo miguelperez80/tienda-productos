@@ -345,7 +345,23 @@ function actualizarPantalla() {
 /* =========================================================================
    7. FILTRO POR CATEGORÍA
    ========================================================================= */
-selectCategoria.addEventListener("change", () => {
+// Recorre el inventario y crea una <option> por cada categoría distinta
+function generarOpcionesCategoria() {
+    const categoriasAgregadas = [];
+
+    inventarioProductos.forEach((producto) => {
+        if (!categoriasAgregadas.includes(producto.categoria)) {
+            categoriasAgregadas.push(producto.categoria);
+
+            const opcion = document.createElement("option");
+            opcion.value = producto.categoria;
+            opcion.textContent = producto.categoria.charAt(0).toUpperCase() + producto.categoria.slice(1) + "s";
+            selectCategoria.appendChild(opcion);
+        }
+    });
+}
+
+   selectCategoria.addEventListener("change", () => {
     categoriaActual = selectCategoria.value;
     renderizarProductos();
 });
@@ -539,7 +555,8 @@ function mostrarMensaje(texto, tipo) {
    ========================================================================= */
 (function iniciarTienda() {
     console.log("Iniciando la tienda...");
-
+    
+    generarOpcionesCategoria();
     actualizarPantalla();
 
     window.addEventListener("offline", () => {
